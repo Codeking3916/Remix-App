@@ -1,12 +1,13 @@
-import { Form } from "@remix-run/react";
+import { Form, useSubmit } from "@remix-run/react";
 import type { FunctionComponent } from "react";
 import { useLoaderData } from "@remix-run/react";
 import type { ContactRecord } from "../data";
+
 import { type ActionFunctionArgs, json, type LoaderFunctionArgs } from "@remix-run/node";
 import { getContact } from "../data";
 import invariant from "tiny-invariant";
 
-
+//loader
 export async function loader({ params }: LoaderFunctionArgs) {
   invariant(!params.contactId, "Missing contactId param");
   const contactIds = params.conractId || '';
@@ -26,7 +27,7 @@ export default function Contact() {
         <img
           alt={`${contact.first} ${contact.last} avatar`}
           key={contact.avatar}
-          src="https://cdn.shopify.com/s/files/1/0582/8218/0726/files/images_1.jpg?v=1722850487"
+          src={contact.avatar}
         />
       </div>
 
